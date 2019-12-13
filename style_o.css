@@ -1,0 +1,163 @@
+body {
+  background-color: #717373;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 15%;
+  background-image: url(http://pomelnikov.com/images/design/50-factures/Facture39.png);
+}
+.one {
+  animation-name: rotatingR;
+}
+.two {
+  left: -4%;
+  margin-top: 10%;
+  animation-name: rotatingL;
+}
+
+figure {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  margin: 0;
+}
+
+.d41 {
+  width: 0;
+  height: 0;
+  margin: 60px;
+  border: 13px solid transparent;
+  box-shadow: 0 -45px 0 0 black, 0 45px 0 0 black, 45px 0 0 0 black,
+    -45px 0 0 0 black;
+  transform: rotate(45deg);
+}
+
+.d42 {
+  width: 0;
+  height: 0;
+  margin: 60px;
+  border: 13px solid transparent;
+  box-shadow: 0 -45px 0 0 black, 0 45px 0 0 black, 45px 0 0 0 black,
+    -45px 0 0 0 black;
+  position: absolute;
+  top: 0;
+}
+.oval {
+  border: 18px solid black;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 21%;
+  left: 21%;
+}
+
+@keyframes rotatingR {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotatingL {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+input {
+  display: none;
+}
+
+#label_click {
+  display: block;
+  width: 70px;
+  height: 70px;
+  background: #bfe6ff;
+  border: 1px solid #889ccd;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+}
+
+#click + #label_click::before {
+  content: "\2714";
+  display: inline-block;
+  color: #889ccd;
+  font-size: 55px;
+  line-height: 70px;
+  /*transform: scale(0);*/
+  opacity: 0;
+  transition: 0.7s ease-in;
+}
+
+#label_click::after {
+  content: "";
+  position: absolute;
+  top: 5%;
+  height: 90%;
+  width: 90%;
+  background: #bfe6ff;
+  right: 0;
+  transition: 2s linear;
+}
+
+#click:checked + #label_click::before {
+  /* transform: scale(1);*/
+  opacity: 1;
+}
+
+#click:checked + #label_click::after {
+  width: 0;
+}
+
+#click:checked ~ figure {
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+}
+
+span {
+  height: 100px;
+  width: 300px;
+
+  margin-right: 20%;
+  margin-left: 1%;
+  position: relative;
+  text-shadow: 2px 2px #ffffff;
+}
+
+span::before {
+  content: "Animation disabled";
+  font-size: 50px;
+  color: rgb(201, 37, 70);
+  text-align: start;
+  display: block;
+}
+
+span::after {
+  content: "Animation enabled";
+  color: #07cc70;
+  font-size: 60px;
+  line-height: 56px;
+  transform: scale(0);
+  opacity: 0;
+}
+#click:checked ~ span::before {
+  display: none;
+}
+#click:checked ~ span::after {
+  transform: scale(1);
+  opacity: 1;
+}
